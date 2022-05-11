@@ -30,6 +30,7 @@ typedef PickerWidgetBuilder = Widget Function(
 class Picker {
   static const double DefaultTextSize = 20.0;
 
+  final double maxLines;
   /// Index of currently selected items
   late List<int> selecteds;
 
@@ -105,6 +106,7 @@ class Picker {
 
   Picker(
       {required this.adapter,
+        this.maxLines = 1,
       this.delimiter,
       List<int>? selecteds,
       this.height = 150.0,
@@ -698,7 +700,7 @@ abstract class PickerAdapter<T> {
     return Center(
         child: DefaultTextStyle(
             overflow: TextOverflow.ellipsis,
-            maxLines: 1,
+            maxLines: picker!.maxLines,
             textAlign: picker!.textAlign,
             style: picker!.textStyle ??
                 TextStyle(
@@ -743,7 +745,7 @@ abstract class PickerAdapter<T> {
         //alignment: Alignment.center,
         child: DefaultTextStyle(
             overflow: TextOverflow.ellipsis,
-            maxLines: 1,
+            maxLines: picker!.maxLines,
             textAlign: picker!.textAlign,
             style: picker!.textStyle ??
                 TextStyle(color: _txtColor, fontSize: _txtSize),
